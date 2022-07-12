@@ -10,7 +10,7 @@ on:
 jobs:
   versioning:
 
-    runs-on: {{matrix.os}}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
