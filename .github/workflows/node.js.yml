@@ -5,10 +5,10 @@ name: React.js CI/CD
 
 on:
   push:
-    branches: "production"
+    branches: "*"
 
 jobs:
-  build:
+  versioning:
 
     runs-on: {{matrix.os}}
 
@@ -20,39 +20,3 @@ jobs:
 
     steps:
     - run: npm version major -m "production build updated %s"
-
-  push:
-    branches: "issues"
-
-jobs:
-  build:
-
-    runs-on: {{matrix.os}}
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - run: npm version patch -m "patch build updated"
-
-    push:
-    branches: "sprint"
-
-jobs:
-  build:
-
-    runs-on: {{matrix.os}}
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - run: npm version minor -m "feature release build updated"
-
-
