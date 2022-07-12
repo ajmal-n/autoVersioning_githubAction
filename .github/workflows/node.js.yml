@@ -5,7 +5,7 @@ name: React.js CI/CD
 
 on:
   push:
-    branches: "*"
+    branches: "production"
 
 jobs:
   versioning:
