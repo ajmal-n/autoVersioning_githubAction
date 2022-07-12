@@ -6,17 +6,14 @@ name: React.js CI/CD
 on:
   push:
     branches: [production]
-
-jobs:
-  versioning:
-
+ version:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-    - run: npm version major -m "production build updated %s"
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      - run: git config --global user.name 'AboutBits Tech'
+      - run: git config --global user.email 'tech@aboutbits.it'
+      - run: npm version patch -m "[RELEASE] %s"
+      - run: git push
