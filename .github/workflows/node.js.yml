@@ -6,7 +6,9 @@ name: React.js CI/CD
 on:
   push:
     branches: [production]
- version:
+
+jobs:
+   version:
     runs-on: ubuntu-latest
     if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
