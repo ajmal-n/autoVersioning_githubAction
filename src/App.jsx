@@ -1,6 +1,6 @@
 import React from 'react'
 import FRParent from './components/FRParent'
-import { version } from '../package.json';
+
 
 function App() {
   return (
@@ -8,7 +8,6 @@ function App() {
       <p> App created by ajmal</p>
       <FRParent />
       <div style={{ backgroundColor: 'black', width: '100%' }}>
-        <p style={{ color: 'white', alignContent: 'center', fontSize: '700', textAlign: 'center' }}>  version:  {version} </p>
         <p style={{ color: 'white', alignContent: 'center', fontSize: '700', textAlign: 'center' }}>  version:  {process.env.REACT_APP_VERSION} </p>
       </div>
 
