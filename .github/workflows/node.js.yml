@@ -5,54 +5,17 @@ name: React.js CI/CD
 
 on:
   push:
-    branches: "production"
+    branches: [production]
 
 jobs:
-  build:
-
-    runs-on: {{matrix.os}}
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+   version:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-    - run: npm version major -m "production build updated %s"
-
-  push:
-    branches: "issues"
-
-jobs:
-  build:
-
-    runs-on: {{matrix.os}}
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - run: npm version patch -m "patch build updated"
-
-    push:
-    branches: "sprint"
-
-jobs:
-  build:
-
-    runs-on: {{matrix.os}}
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - run: npm version minor -m "feature release build updated"
-
-
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      - run: git config --global user.name 'AboutBits Tech'
+      - run: git config --global user.email 'tech@aboutbits.it'
+      - run: npm version patch -m "[RELEASE] %s"
+      - run: git push
