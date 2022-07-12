@@ -13,7 +13,5 @@ jobs:
     if: "!startsWith(github.event.head_commit.message,)"
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       - run: npm version patch -m "updated for production %s"
       - run: git push
