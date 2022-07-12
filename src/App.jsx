@@ -9,7 +9,7 @@ function App() {
       <p>changes </p>
       <FRParent />
       <div style={{ backgroundColor: 'black', width: '100%' }}>
-        <p style={{ color: 'white', alignContent: 'center', fontSize: '700', textAlign: 'center' }}>  version:  {process.env.REACT_APP_VERSION} </p>
+        <p style={{ color: 'white', alignContent: 'center', fontSize: '700', textAlign: 'center' }}>  version:  {process.env.npm_package_version} </p>
       </div>
 
     </div>
